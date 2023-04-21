@@ -12,7 +12,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
 }
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+  const SplashScreen({Key? key}) : super(key: key);
 
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -63,7 +63,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     textColor: Colors.white,
                     padding: const EdgeInsets.all(16),
                     shape: const CircleBorder(),
-                    child: FittedBox(
+                    child: const FittedBox(
                       fit: BoxFit.scaleDown,
                       child: Text(
                         "RUN!",
@@ -80,7 +80,7 @@ class _SplashScreenState extends State<SplashScreen> {
 }
 
 class NextScreen extends StatelessWidget {
-  const NextScreen({super.key});
+  const NextScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -103,6 +103,27 @@ class NextScreen extends StatelessWidget {
             ElevatedButton(
               onPressed: () {},
               child: const Text("회원가입"),
+            ),
+            TextButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      content: Image.asset('assets/my_image.jpg'),
+                      actions: <Widget>[
+                        TextButton(
+                          child: const Text('Close'),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
+              child: const Text("이미지 보기"),
             ),
             TextButton(
               onPressed: () {
